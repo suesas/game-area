@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 652 780" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Ebene1">
+        <g transform="matrix(0.276635,0,0,0.276635,101.402,-10.399)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,150.676,57.7834)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,573.664,-14.2961)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,482.659,118.917)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,209.71,121.835)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,67.2784,122.427)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,-0.205372,187.329)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,160.586,186.302)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,323.723,119.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,264.723,186.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,407.723,183.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,482.723,184.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,365.723,249.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,163.723,249.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,54.7232,315.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,375.723,313.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,504.723,378.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,276.723,378.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,125.723,378.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,69.7232,444.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,-0.276793,444.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,161.723,444.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,365.723,444.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,441.723,441.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,573.723,441.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,302.723,506.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,125.723,571.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,334.723,571.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,463.723,571.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,576.723,571.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,576.723,636.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,366.723,638.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,126.723,639.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,-1.27679,639.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,81.7232,703.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,210.723,703.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,526.723,704.809)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,482.403,55.1342)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,264.132,-10.3272)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+        <g transform="matrix(0.276635,0,0,0.276635,34.6685,57.7218)">
+            <ellipse cx="124.964" cy="154.794" rx="75.645" ry="75.654" style="fill:rgb(235,235,235);"/>
+        </g>
+    </g>
+    <g id="Ebene2">
+        <path d="M438.657,583.671L437.139,453.544L334.485,453.544L519.553,453.544L519.553,507.329L519.553,453.544L652.124,453.544L574.794,453.544L574.794,261.567L507.144,261.567" style="fill:none;"/>
+        <path d="M335.572,261.766L264.372,261.766" style="fill:none;"/>
+        <path d="M65.832,260.427L159.966,260.427L159.966,327.392" style="fill:none;"/>
+        <path d="M396.828,259.341L437.834,259.341L437.834,323.242L519.504,323.242" style="fill:none;"/>
+        <path d="M648.815,194.091L606.344,194.091" style="fill:none;"/>
+        <path d="M534.3,193.994L503.76,193.994" style="fill:none;"/>
+        <path d="M547.497,130.03L580.209,130.03" style="fill:none;"/>
+        <path d="M448.806,196.297L406.755,196.297" style="fill:none;"/>
+        <path d="M333.992,197.424L266.958,197.424" style="fill:none;"/>
+        <path d="M141.131,197.513L100.215,197.513" style="fill:none;"/>
+        <path d="M42.711,197.945L1.549,197.945" style="fill:none;"/>
+        <path d="M65.938,131.516L220.945,131.516L220.945,46.471" style="fill:none;"/>
+        <path d="M281.188,64.637L335.118,64.637" style="fill:none;"/>
+        <path d="M282.995,130.322L336.634,130.322" style="fill:none;"/>
+        <path d="M384.015,44.861L384.015,126.542L487.537,126.542" style="fill:none;"/>
+        <path d="M510.432,42.075L510.432,66.082" style="fill:none;"/>
+        <path d="M576.108,0.209L576.108,63.878" style="fill:none;"/>
+        <path d="M444.243,1.089L444.243,65.203" style="fill:none;"/>
+        <path d="M100.255,2.407L100.255,33.929" style="fill:none;"/>
+        <path d="M63.623,325.023L100.154,325.023" style="fill:none;"/>
+        <path d="M65.553,390.843L161.573,390.843" style="fill:none;"/>
+        <path d="M221.508,392.467L221.508,324.613L360.67,324.613" style="fill:none;"/>
+        <path d="M322.523,389.763L284.054,389.763" style="fill:none;"/>
+        <path d="M378.62,392.39L421.502,392.39" style="fill:none;"/>
+        <path d="M484.09,391.988L519.844,391.988" style="fill:none;"/>
+        <path d="M280.358,456.711L175.255,456.711" style="fill:none;"/>
+        <path d="M66.172,456.255L66.172,522.894" style="fill:none;"/>
+        <path d="M250.68,523.05L202.349,523.05L202.349,583.105L64.907,583.105" style="fill:none;"/>
+        <path d="M266.943,585.237L376.735,585.237L302.454,585.237L302.454,518.818" style="fill:none;"/>
+        <path d="M500.423,585.289L540.144,585.289L540.144,651.22L351.026,651.22" style="fill:none;"/>
+        <path d="M286.905,652.429L156.129,652.429" style="fill:none;"/>
+        <path d="M98.523,652.034L65.089,652.034" style="fill:none;"/>
+        <path d="M610.357,651.553L650.063,651.553" style="fill:none;"/>
+        <path d="M538.626,718.732L472.644,718.732" style="fill:none;"/>
+        <path d="M419.823,717.953L285.212,717.953L285.212,776.219" style="fill:none;"/>
+        <path d="M41.319,717.303L1.287,717.303" style="fill:none;"/>
+        <path d="M597.375,716.017L597.375,775.941" style="fill:none;"/>
+    </g>
+</svg>

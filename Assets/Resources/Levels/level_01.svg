@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="500" height="500"
+     viewBox="0 0 500 500"
+     version="1.1">
+
+  <!-- Floor: Simple rectangle -->
+  <path id="floor" fill="#cccccc" d="M 50 50 L 450 50 L 450 450 L 50 450 Z" />
+
+  <!-- Wall: L-shaped path -->
+  <path id="wall" fill="#333333" d="
+    M 100 100 
+    L 200 100 
+    L 200 200 
+    L 300 200 
+    L 300 300 
+    L 100 300 
+    Z" />
+
+</svg>
