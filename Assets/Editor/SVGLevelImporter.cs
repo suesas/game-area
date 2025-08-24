@@ -75,10 +75,10 @@ public class SvgLevelImporter : EditorWindow
 
         var tessOptions = new VectorUtils.TessellationOptions()
         {
-            StepDistance = 0.1f,
+            StepDistance = 0.03f,
             MaxCordDeviation = 0.05f,
             MaxTanAngleDeviation = 0.1f,
-            SamplingStepSize = 0.01f
+            SamplingStepSize = 0.02f
         };
 
         var geoms = VectorUtils.TessellateScene(sceneInfo.Scene, tessOptions);
