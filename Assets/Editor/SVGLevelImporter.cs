@@ -17,6 +17,7 @@ public class SvgLevelImporter : EditorWindow
     private float floorHeight = 0.1f;
     private float wallHeight = 2f;
     private float sphereStartHeight = 2.5f;
+    private float curveSampleDistance = 0.4f; // Target world-space distance between sampled points on Bezier curves
 
     // Sphere Physics Properties
     private float sphereMass = 5f;
@@ -39,6 +40,9 @@ public class SvgLevelImporter : EditorWindow
         wallHeight = EditorGUILayout.FloatField("Wall Height", wallHeight);
         sphereStartHeight = EditorGUILayout.FloatField("Sphere Start Height", sphereStartHeight);
 
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Curve Sampling", EditorStyles.boldLabel);
+        curveSampleDistance = EditorGUILayout.Slider("Curve Sample Distance", curveSampleDistance, 0.02f, 2.0f);
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Sphere Physics", EditorStyles.boldLabel);
         sphereMass = EditorGUILayout.FloatField("Mass", sphereMass);
@@ -103,11 +107,9 @@ public class SvgLevelImporter : EditorWindow
             var allContours = new List<List<Vector2>>();
             foreach (var contour in shape.Contours)
             {
-                var points = new List<Vector2>();
-                foreach (var segment in contour.Segments)
-                    points.Add(segment.P0);
-                if (points.Count >= 3)
-                    allContours.Add(points);
+                var sampled = SampleBezierContour(contour, curveSampleDistance);
+                if (sampled.Count >= 3)
+                    allContours.Add(sampled);
             }
 
             float height = IsColor(color, "#cccccc") ? floorHeight : wallHeight;
@@ -294,6 +296,78 @@ public class SvgLevelImporter : EditorWindow
         {
             sphereGO.transform.parent = null;
         }
+    }
+
+    // --- Bezier sampling utilities ---
+    private List<Vector2> SampleBezierContour(BezierContour contour, float targetDistance)
+    {
+        var output = new List<Vector2>();
+        if (contour.Segments == null || contour.Segments.Length == 0)
+            return output;
+
+        Vector2 previous = contour.Segments[0].P0;
+        output.Add(previous);
+
+        for (int i = 0; i < contour.Segments.Length; i++)
+        {
+            var seg = contour.Segments[i];
+            var nextSeg = contour.Segments[(i + 1) % contour.Segments.Length];
+            Vector2 p0 = seg.P0;
+            Vector2 p1 = seg.P1;
+            Vector2 p2 = seg.P2;
+            // Unity.VectorGraphics uses next segment's P0 as the end point of the current cubic
+            Vector2 p3 = (i < contour.Segments.Length - 1 || contour.Closed) ? nextSeg.P0 : seg.P2;
+
+            // Ensure continuity if the input has tiny gaps due to float issues
+            if ((p0 - previous).sqrMagnitude > 1e-6f)
+            {
+                previous = p0;
+                if (output.Count == 0 || (output[output.Count - 1] - p0).sqrMagnitude > 1e-6f)
+                    output.Add(p0);
+            }
+
+            float estimatedLen = EstimateCubicLength(p0, p1, p2, p3);
+            int steps = Mathf.Max(1, Mathf.RoundToInt(estimatedLen / Mathf.Max(0.0001f, targetDistance)));
+
+            for (int s = 1; s <= steps; s++)
+            {
+                float t = (float)s / steps;
+                Vector2 pt = EvaluateCubic(p0, p1, p2, p3, t);
+                if ((pt - output[output.Count - 1]).sqrMagnitude > 1e-10f)
+                    output.Add(pt);
+            }
+            previous = p3;
+        }
+
+        // Close if necessary
+        if (contour.Closed && output.Count > 2)
+        {
+            if ((output[0] - output[output.Count - 1]).sqrMagnitude > 1e-6f)
+                output.Add(output[0]);
+        }
+        return output;
+    }
+
+    private Vector2 EvaluateCubic(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float t)
+    {
+        float u = 1f - t;
+        float uu = u * u;
+        float uuu = uu * u;
+        float tt = t * t;
+        float ttt = tt * t;
+        return uuu * p0 + 3f * uu * t * p1 + 3f * u * tt * p2 + ttt * p3;
+    }
+
+    private float EstimateCubicLength(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3)
+    {
+        // Simple heuristic: sum of control net segment lengths
+        float len = 0f;
+        len += Vector2.Distance(p0, p1);
+        len += Vector2.Distance(p1, p2);
+        len += Vector2.Distance(p2, p3);
+        // Clamp to at least the chord length
+        float chord = Vector2.Distance(p0, p3);
+        return Mathf.Max(len * 0.5f, chord);
     }
 
     private Mesh Extrude(float height, float baseY, List<List<Vector2>> contours, bool isFloor)
