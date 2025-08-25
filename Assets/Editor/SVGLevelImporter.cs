@@ -18,6 +18,12 @@ public class SvgLevelImporter : EditorWindow
     private float wallHeight = 2f;
     private float sphereStartHeight = 2.5f;
     private float curveSampleDistance = 0.4f; // Target world-space distance between sampled points on Bezier curves
+    private bool fitToTargetSize = true;
+    private float targetWorldWidth = 20f; // world units
+    private bool applyPreRotation = false;
+    private float preRotationYDegrees = 0f; // rotate geometry about Y before finalizing
+    private bool mirrorX = false;
+    private bool mirrorZ = false;
 
     // Sphere Physics Properties
     private float sphereMass = 5f;
@@ -43,6 +49,22 @@ public class SvgLevelImporter : EditorWindow
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Curve Sampling", EditorStyles.boldLabel);
         curveSampleDistance = EditorGUILayout.Slider("Curve Sample Distance", curveSampleDistance, 0.02f, 2.0f);
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Sizing", EditorStyles.boldLabel);
+        fitToTargetSize = EditorGUILayout.Toggle("Fit To Target Width", fitToTargetSize);
+        using (new EditorGUI.DisabledScope(!fitToTargetSize))
+        {
+            targetWorldWidth = EditorGUILayout.FloatField("Target World Width", targetWorldWidth);
+        }
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Orientation", EditorStyles.boldLabel);
+        applyPreRotation = EditorGUILayout.Toggle("Apply Pre-Rotation", applyPreRotation);
+        using (new EditorGUI.DisabledScope(!applyPreRotation))
+        {
+            preRotationYDegrees = EditorGUILayout.FloatField("Y Rotation (deg)", preRotationYDegrees);
+        }
+        mirrorX = EditorGUILayout.Toggle("Mirror X (left/right)", mirrorX);
+        mirrorZ = EditorGUILayout.Toggle("Mirror Z (up/down)", mirrorZ);
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Sphere Physics", EditorStyles.boldLabel);
         sphereMass = EditorGUILayout.FloatField("Mass", sphereMass);
@@ -277,6 +299,62 @@ public class SvgLevelImporter : EditorWindow
             pivot.name = rootGO.name;
             rootGO.name += "_Mesh";
             finalRoot = pivot;
+
+            // Optional: apply pre-rotation and mirroring to mesh child while keeping pivot at zero rotation
+            if (applyPreRotation || mirrorX || mirrorZ)
+            {
+                var child = rootGO.transform; // the geometry under the pivot
+                if (applyPreRotation)
+                {
+                    child.localRotation = Quaternion.Euler(0f, preRotationYDegrees, 0f);
+                }
+                Vector3 childScale = child.localScale;
+                if (mirrorX) childScale.x = -Mathf.Abs(childScale.x); else childScale.x = Mathf.Abs(childScale.x);
+                if (mirrorZ) childScale.z = -Mathf.Abs(childScale.z); else childScale.z = Mathf.Abs(childScale.z);
+                child.localScale = childScale;
+            }
+
+            // Recompute bounds after orientation changes
+            var renderersForSizing = finalRoot.GetComponentsInChildren<Renderer>()
+                .Where(r => r.gameObject.name.StartsWith("Wall") || r.gameObject.name.StartsWith("Floor"))
+                .ToList();
+            if (renderersForSizing.Count > 0)
+            {
+                var boundsAfter = renderersForSizing[0].bounds;
+                for (int i = 1; i < renderersForSizing.Count; i++) boundsAfter.Encapsulate(renderersForSizing[i].bounds);
+
+                // Ensure rotation happens around true center: move inner gimbal so the mesh center aligns with pivot
+                var centerLocal = finalRoot.transform.InverseTransformPoint(boundsAfter.center);
+                foreach (Transform child in finalRoot.transform)
+                {
+                    if (child.name == "Gimbal_Outer")
+                    {
+                        var innerGimbal = child.Find("Gimbal_Inner");
+                        if (innerGimbal != null)
+                        {
+                            innerGimbal.localPosition = -centerLocal;
+                        }
+                        break;
+                    }
+                }
+
+                // Recompute bounds after recentering
+                renderersForSizing = finalRoot.GetComponentsInChildren<Renderer>()
+                    .Where(r => r.gameObject.name.StartsWith("Wall") || r.gameObject.name.StartsWith("Floor"))
+                    .ToList();
+                boundsAfter = renderersForSizing[0].bounds;
+                for (int i = 1; i < renderersForSizing.Count; i++) boundsAfter.Encapsulate(renderersForSizing[i].bounds);
+
+                if (fitToTargetSize)
+                {
+                    float currentWidth = boundsAfter.size.x;
+                    if (currentWidth > 0.0001f)
+                    {
+                        float uniformScale = targetWorldWidth / currentWidth;
+                        finalRoot.transform.localScale = Vector3.one * uniformScale;
+                    }
+                }
+            }
         }
 
         if (finalRoot.GetComponent<MazeController>() == null)
@@ -288,6 +366,24 @@ public class SvgLevelImporter : EditorWindow
             if (rb != null)
             {
                 rb.isKinematic = true;
+            }
+        }
+
+        // Create gimbal frames for single-axis rotations and reparent the mesh under them
+        {
+            var controller = finalRoot.GetComponent<MazeController>();
+            var outer = new GameObject("Gimbal_Outer").transform;
+            outer.SetParent(finalRoot.transform, false);
+            var inner = new GameObject("Gimbal_Inner").transform;
+            inner.SetParent(outer, false);
+
+            // Move mesh assembly under inner gimbal
+            rootGO.transform.SetParent(inner, true);
+
+            // Wire up controller references if available
+            if (controller != null)
+            {
+                controller.SendMessage("ConfigureGimbals", new object[] { outer, inner }, SendMessageOptions.DontRequireReceiver);
             }
         }
 

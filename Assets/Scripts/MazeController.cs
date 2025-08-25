@@ -3,37 +3,57 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class MazeController : MonoBehaviour
 {
-    [Tooltip("The speed at which the maze rotates.")]
+    [Header("Gimbals")]
+    [SerializeField] private Transform outerGimbalZ; // rotates around Z
+    [SerializeField] private Transform innerGimbalX; // rotates around X
+
+    [Header("Controls")]
+    [Tooltip("Degrees per second for tilt input")]
     [SerializeField] private float rotationSpeed = 20f;
+    [Tooltip("Maximum absolute tilt in degrees per axis")]
+    [SerializeField] private float maxTiltDegrees = 15f;
 
     private Rigidbody rb;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = true;
     }
 
-    void Update()
+    // Optional helper called by importer to wire gimbals automatically
+    private void ConfigureGimbals(object[] args)
     {
-        // Input should be read in Update for responsiveness
+        if (args == null || args.Length < 2) return;
+        outerGimbalZ = args[0] as Transform;
+        innerGimbalX = args[1] as Transform;
     }
 
     void FixedUpdate()
     {
-        // Get input from horizontal and vertical axes (Arrow keys or WASD)
+        if (outerGimbalZ == null || innerGimbalX == null) return;
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        // Calculate rotation amounts. 
-        // We rotate around the Z-axis for horizontal input and X-axis for vertical input.
-        float zRotation = horizontalInput * rotationSpeed * Time.deltaTime;
-        float xRotation = -verticalInput * rotationSpeed * Time.deltaTime; // Negative to match intuitive control
+        float zDelta = horizontalInput * rotationSpeed * Time.fixedDeltaTime;
+        float xDelta = -verticalInput * rotationSpeed * Time.fixedDeltaTime;
 
-        // Create a quaternion for the rotation delta
-        Quaternion deltaRotation = Quaternion.Euler(xRotation, 0, zRotation);
+        // Outer (Z)
+        float currentZ = NormalizeAngle(outerGimbalZ.localEulerAngles.z);
+        float targetZ = Mathf.Clamp(currentZ + zDelta, -maxTiltDegrees, maxTiltDegrees);
+        outerGimbalZ.localRotation = Quaternion.Euler(0f, 0f, targetZ);
 
-        // Apply the rotation to the Rigidbody. This is the correct way to rotate a kinematic Rigidbody
-        // to ensure proper interaction with other physics objects.
-        rb.MoveRotation(rb.rotation * deltaRotation);
+        // Inner (X)
+        float currentX = NormalizeAngle(innerGimbalX.localEulerAngles.x);
+        float targetX = Mathf.Clamp(currentX + xDelta, -maxTiltDegrees, maxTiltDegrees);
+        innerGimbalX.localRotation = Quaternion.Euler(targetX, 0f, 0f);
+    }
+
+    private float NormalizeAngle(float degrees)
+    {
+        degrees %= 360f;
+        if (degrees > 180f) degrees -= 360f;
+        return degrees;
     }
 }
