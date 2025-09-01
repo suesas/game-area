@@ -380,10 +380,16 @@ public class SvgLevelImporter : EditorWindow
             // Move mesh assembly under inner gimbal
             rootGO.transform.SetParent(inner, true);
 
-            // Wire up controller references if available
+            // Wire up controller references without invoking behaviours in edit mode
             if (controller != null)
             {
-                controller.SendMessage("ConfigureGimbals", new object[] { outer, inner }, SendMessageOptions.DontRequireReceiver);
+                var so = new UnityEditor.SerializedObject(controller);
+                var propOuter = so.FindProperty("outerGimbalZ");
+                var propInner = so.FindProperty("innerGimbalX");
+                if (propOuter != null) propOuter.objectReferenceValue = outer;
+                if (propInner != null) propInner.objectReferenceValue = inner;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                UnityEditor.EditorUtility.SetDirty(controller);
             }
         }
 
